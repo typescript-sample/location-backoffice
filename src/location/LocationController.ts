@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { GenericSearchController, SearchResult } from 'express-ext';
-import { Location, LocationSM } from './Location';
+import { Location, LocationSM } from 'onecore';
 import { LocationService } from './LocationService';
 
 export class LocationController extends GenericSearchController<Location, string, LocationSM> {

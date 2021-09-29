@@ -1,4 +1,4 @@
-import { Location } from './Location';
+import { Location } from 'onecore';
 
 export interface LocationService {
   all(): Promise<Location[]>;

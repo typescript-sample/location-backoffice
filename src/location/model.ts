@@ -1,4 +1,4 @@
-import { Model } from 'mongodb-extension';
+import { Model } from 'onecore';
 
 export const locationModel: Model = {
   name: 'location',
@@ -16,6 +16,16 @@ export const locationModel: Model = {
     },
     description: {
       q: true
+    },
+    status: {
+      match: 'equal'
+    },
+    imageURL: {},
+    latitude: {
+      type: 'number',
+    },
+    longitude: {
+      type: 'number',
     }
   }
 };
