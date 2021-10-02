@@ -9,8 +9,8 @@ export const events = [
     'geo': {
       'type': 'Point',
       'coordinates': [
-        106.630176,
-        10.856011
+        106.62435293197633,
+        10.852848365357607
       ]
     },
     'locationId': '5d146cbffbdf2b1d30742262'
