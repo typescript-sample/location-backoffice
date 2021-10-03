@@ -28,4 +28,12 @@ export function route(app: Application, ctx: ApplicationContext): void {
   app.put('/bookables/:id', ctx.bookable.update);
   app.patch('/bookables/:id', ctx.bookable.patch);
   app.delete('/bookables/:id', ctx.bookable.delete);
+
+  app.get('/tours/search', ctx.tour.search);
+  app.post('/tours/search', ctx.tour.search);
+  app.get('/tours/:id', ctx.tour.load);
+  app.post('/tours', ctx.tour.insert);
+  app.put('/tours/:id', ctx.tour.update);
+  app.patch('/tours/:id', ctx.tour.patch);
+  app.delete('/tours/:id', ctx.tour.delete);
 }

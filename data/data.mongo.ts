@@ -633,6 +633,7 @@ export const tours = [
 export const trips = [
   {
     '_id': '5d1c1e29979a231ba03c9195',
+    'userId': '00001',
     'startTime': '2019-07-02T17:00:00.000Z',
     'endTime': '2019-07-05T17:00:00.000Z',
     'locations': [
@@ -648,6 +649,7 @@ export const trips = [
   },
   {
     '_id': '5d1c29f8d254e21ba02402ad',
+    'userId': '00002',
     'startTime': '2019-07-03T17:00:00.000Z',
     'endTime': '2019-07-10T17:00:00.000Z',
     'locations': [
@@ -663,6 +665,7 @@ export const trips = [
   },
   {
     '_id': '5d1c4e0dae9d5f0b145a07b8',
+    'userId': '00003',
     'startTime': '2019-07-08T17:00:00.000Z',
     'endTime': '2019-07-10T17:00:00.000Z',
     'locations': [
@@ -678,6 +681,7 @@ export const trips = [
   },
   {
     '_id': '5d2da8e360af8f21608bcbaf',
+    'userId': '00004',
     'startTime': '2019-07-02T17:00:00.000Z',
     'endTime': '1970-01-01T00:00:00.000Z',
     'locations': [
@@ -692,4 +696,3 @@ export const trips = [
     ]
   }
 ];
-
