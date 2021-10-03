@@ -114,3 +114,33 @@ export const tourModel: Model = {
     }
   }
 };
+
+export const articleModel: Model = {
+  name: 'article',
+  attributes: {
+    id: {
+      key: true
+    },
+    name: {
+      required: true,
+      q: true
+    },
+    type: {
+      match: 'equal',
+      required: true
+    },
+    description: {
+      q: true
+    },
+    content: {
+      q: true
+    },
+    status: {
+      match: 'equal'
+    },
+    tags: {
+      type: 'primitives'
+    },
+    imageURL: {},
+  }
+};

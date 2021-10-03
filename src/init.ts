@@ -1,12 +1,13 @@
 import { HealthController, LowCodeController, resources } from 'express-ext';
 import { Db } from 'mongodb';
 import { buildQuery, buildSort, MongoChecker, MongoLowCodeService, PointMapper, SearchBuilder } from 'mongodb-extension';
-import { Bookable, BookableSM, Event, EventSM } from 'onecore';
-import { Location, LocationSM } from 'onecore';
+import { Article, ArticleSM } from 'onecore';
+import { Bookable, BookableSM, Event, EventSM, Location, LocationSM } from 'onecore';
 import { createValidator } from 'validator-x';
 import { ApplicationContext } from './context';
 import { locationModel, MongoLocationService } from './location';
 import { LocationController } from './location/LocationController';
+import { articleModel } from './model';
 import { bookableModel, eventModel, tourModel } from './model';
 import { Tour, TourSM } from './model';
 
@@ -34,11 +35,15 @@ export function createContext(db: Db): ApplicationContext {
   const tourService = new MongoLowCodeService<Tour, string, TourSM>(db, tourModel, build);
   const tourController = new LowCodeController(log, tourService, build);
 
+  const articleService = new MongoLowCodeService<Article, string, ArticleSM>(db, articleModel, build);
+  const articleController = new LowCodeController(log, articleService, build);
+
   const ctx: ApplicationContext = {
     health: healthController,
     location: locationController,
     event: eventController,
     bookable: bookableController,
-    tour: tourController };
+    tour: tourController,
+    article: articleController };
   return ctx;
 }

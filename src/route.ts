@@ -36,4 +36,12 @@ export function route(app: Application, ctx: ApplicationContext): void {
   app.put('/tours/:id', ctx.tour.update);
   app.patch('/tours/:id', ctx.tour.patch);
   app.delete('/tours/:id', ctx.tour.delete);
+
+  app.get('/articles/search', ctx.article.search);
+  app.post('/articles/search', ctx.article.search);
+  app.get('/articles/:id', ctx.article.load);
+  app.post('/articles', ctx.article.insert);
+  app.put('/articles/:id', ctx.article.update);
+  app.patch('/articles/:id', ctx.article.patch);
+  app.delete('/articles/:id', ctx.article.delete);
 }
