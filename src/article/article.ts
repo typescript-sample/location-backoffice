@@ -1,4 +1,4 @@
-import { Attributes, DateRange, Filter, Repository, Service } from 'onecore';
+import { Attributes, Filter, Repository, Service } from 'onecore';
 
 export interface ArticleFilter extends Filter {
   id?: string;
@@ -43,7 +43,8 @@ export const articleModel: Attributes = {
     match: 'equal'
   },
   tags: {
-    type: 'primitives'
+    type: 'strings',
+    match: 'equal'
   },
   imageURL: {}
 };
