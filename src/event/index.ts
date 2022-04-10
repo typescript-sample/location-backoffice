@@ -1,5 +1,5 @@
 import { Db } from 'mongodb';
-import { buildQuery, SearchBuilder } from 'mongodb-extension';
+import { buildQuery, PointMapper, SearchBuilder } from 'mongodb-extension';
 import { Log, Manager, Search } from 'onecore';
 import { Event, EventFilter, eventModel, EventRepository, EventService } from './event';
 import { EventController } from './event-controller';
@@ -14,8 +14,9 @@ export class EventManager extends Manager<Event, string, EventFilter> implements
   }
 }
 export function useEventService(db: Db): EventService {
-  const builder = new SearchBuilder<Event, EventFilter>(db, 'event', buildQuery, eventModel);
-  const repository = new MongoEventRepository(db);
+  const mapper = new PointMapper<Event>('geo', 'latitude', 'longitude');
+  const builder = new SearchBuilder<Event, EventFilter>(db, 'event', buildQuery, eventModel, mapper.fromPoint);
+  const repository = new MongoEventRepository(db, mapper.toPoint, mapper.fromPoint);
   return new EventManager(builder.search, repository);
 }
 export function useEventController(log: Log, db: Db): EventController {

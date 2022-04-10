@@ -1,5 +1,5 @@
 import { Db } from 'mongodb';
-import { buildQuery, SearchBuilder } from 'mongodb-extension';
+import { buildQuery, PointMapper, SearchBuilder } from 'mongodb-extension';
 import { Log, Manager, Search } from 'onecore';
 import { Location, LocationFilter, locationModel, LocationRepository, LocationService } from './location';
 import { LocationController } from './location-controller';
@@ -14,8 +14,9 @@ export class LocationManager extends Manager<Location, string, LocationFilter> i
   }
 }
 export function useLocationService(db: Db): LocationService {
-  const builder = new SearchBuilder<Location, LocationFilter>(db, 'location', buildQuery, locationModel);
-  const repository = new MongoLocationRepository(db);
+  const mapper = new PointMapper<Location>('geo', 'latitude', 'longitude');
+  const builder = new SearchBuilder<Location, LocationFilter>(db, 'location', buildQuery, locationModel, mapper.fromPoint);
+  const repository = new MongoLocationRepository(db, mapper.toPoint, mapper.fromPoint);
   return new LocationManager(builder.search, repository);
 }
 export function useLocationController(log: Log, db: Db): LocationController {
