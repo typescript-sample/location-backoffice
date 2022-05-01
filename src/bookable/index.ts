@@ -1,3 +1,4 @@
+import { Build } from 'express-ext';
 import { Db } from 'mongodb';
 import { buildQuery, SearchBuilder } from 'mongodb-extension';
 import { Log, Manager, Search } from 'onecore';
@@ -18,6 +19,6 @@ export function useBookableService(db: Db): BookableService {
   const repository = new MongoBookableRepository(db);
   return new BookableManager(builder.search, repository);
 }
-export function useBookableController(log: Log, db: Db): BookableController {
-  return new BookableController(log, useBookableService(db));
+export function useBookableController(log: Log, db: Db, build?: Build<Bookable>): BookableController {
+  return new BookableController(log, useBookableService(db), build);
 }

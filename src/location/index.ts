@@ -1,3 +1,4 @@
+import { Build } from 'express-ext';
 import { Db } from 'mongodb';
 import { buildQuery, PointMapper, SearchBuilder } from 'mongodb-extension';
 import { Log, Manager, Search } from 'onecore';
@@ -19,6 +20,6 @@ export function useLocationService(db: Db): LocationService {
   const repository = new MongoLocationRepository(db, mapper.toPoint, mapper.fromPoint);
   return new LocationManager(builder.search, repository);
 }
-export function useLocationController(log: Log, db: Db): LocationController {
-  return new LocationController(log, useLocationService(db));
+export function useLocationController(log: Log, db: Db, build?: Build<Location>): LocationController {
+  return new LocationController(log, useLocationService(db), build);
 }

@@ -1,3 +1,4 @@
+import { Build } from 'express-ext';
 import { Db } from 'mongodb';
 import { buildQuery, SearchBuilder } from 'mongodb-extension';
 import { Log, Manager, Search } from 'onecore';
@@ -18,6 +19,6 @@ export function useTourService(db: Db): TourService {
   const repository = new MongoTourRepository(db);
   return new TourManager(builder.search, repository);
 }
-export function useTourController(log: Log, db: Db): TourController {
+export function useTourController(log: Log, db: Db, build?: Build<Tour>): TourController {
   return new TourController(log, useTourService(db));
 }

@@ -1,3 +1,4 @@
+import { Build } from 'express-ext';
 import { Db } from 'mongodb';
 import { buildQuery, PointMapper, SearchBuilder } from 'mongodb-extension';
 import { Log, Manager, Search } from 'onecore';
@@ -19,6 +20,6 @@ export function useEventService(db: Db): EventService {
   const repository = new MongoEventRepository(db, mapper.toPoint, mapper.fromPoint);
   return new EventManager(builder.search, repository);
 }
-export function useEventController(log: Log, db: Db): EventController {
-  return new EventController(log, useEventService(db));
+export function useEventController(log: Log, db: Db, build?: Build<Event>): EventController {
+  return new EventController(log, useEventService(db), build);
 }

@@ -24,6 +24,11 @@ export const config = {
   mongo: {
     uri: 'mongodb+srv://dbUser:Demoaccount1@projectdemo.g0lah.mongodb.net',
     db: 'location'
+  },
+  model: {
+    id: 'id',
+    payload: 'payload',
+    user: 'userId'
   }
 };
 

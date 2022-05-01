@@ -1,3 +1,4 @@
+import { Build } from 'express-ext';
 import { Db } from 'mongodb';
 import { buildQuery, SearchBuilder } from 'mongodb-extension';
 import { Log, Manager, Search } from 'onecore';
@@ -18,6 +19,6 @@ export function useArticleService(db: Db): ArticleService {
   const repository = new MongoArticleRepository(db);
   return new ArticleManager(builder.search, repository);
 }
-export function useArticleController(log: Log, db: Db): ArticleController {
-  return new ArticleController(log, useArticleService(db));
+export function useArticleController(log: Log, db: Db, build?: Build<Article>): ArticleController {
+  return new ArticleController(log, useArticleService(db), build);
 }
