@@ -1,5 +1,5 @@
 export const config = {
-  port: 8080,
+  port: 8085,
   allow: {
     origin: '*',
     credentials: 'true',
@@ -28,8 +28,14 @@ export const config = {
   model: {
     id: 'id',
     payload: 'payload',
-    user: 'userId'
-  }
+    user: 'userId',
+  },
+  bucket: 'go-firestore-rest-api.appspot.com',
+  storage: {
+    image: 'avatar',
+    cover: 'cover',
+    gallery: 'gallery'
+  },
 };
 
 export const env = {

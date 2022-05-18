@@ -18,7 +18,7 @@ const middleware = new MiddlewareLogger(logger.info, conf.middleware);
 app.use(allow(conf.allow), json(), middleware.log);
 
 connectToDb(`${conf.mongo.uri}`, `${conf.mongo.db}`).then(db => {
-  const ctx = useContext(db, logger, middleware, conf.model);
+  const ctx = useContext(db, logger, middleware, conf.model,conf);
   route(app, ctx);
   http.createServer(app).listen(conf.port, () => {
     console.log('Start mongo server at port ' + conf.port);

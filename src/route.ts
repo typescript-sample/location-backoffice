@@ -1,7 +1,9 @@
 import { Application } from 'express';
 import { ApplicationContext } from './context';
+import multer from 'multer';
 
 export function route(app: Application, ctx: ApplicationContext): void {
+  const parser = multer();
   app.get('/health', ctx.health.check);
   app.patch('/log', ctx.log.config);
   app.patch('/middleware', ctx.middleware.config);
@@ -12,7 +14,7 @@ export function route(app: Application, ctx: ApplicationContext): void {
   app.post('/articles', ctx.article.create);
   app.put('/articles/:id', ctx.article.update);
   app.patch('/articles/:id', ctx.article.patch);
-  app.delete('/articles/:id', ctx.article.delete);
+  app.delete('/articles/:id', ctx.article.delete); 
 
   app.post('/bookables/search', ctx.bookable.search);
   app.get('/bookables/search', ctx.bookable.search);
@@ -37,6 +39,8 @@ export function route(app: Application, ctx: ApplicationContext): void {
   app.put('/locations/:id', ctx.location.update);
   app.patch('/locations/:id', ctx.location.patch);
   app.delete('/locations/:id', ctx.location.delete);
+  app.post('/locations/:id/cover', parser.array('files'), ctx.locationUpload.uploadCover);
+  app.post('/locations/:id/upload', parser.array('files'), ctx.locationUpload.uploadImage);
 
   app.post('/tours/search', ctx.tour.search);
   app.get('/tours/search', ctx.tour.search);

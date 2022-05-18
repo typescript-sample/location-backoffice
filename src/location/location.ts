@@ -1,4 +1,6 @@
+import { UploadGallery } from 'one-storage';
 import { Attributes, DateRange, Filter, Repository, Service } from 'onecore';
+import { UploadData, UploadInfo } from 'upload-express';
 
 export interface LocationFilter extends Filter {
   id?: string;
@@ -17,6 +19,18 @@ export interface Location {
 export interface LocationRepository extends Repository<Location, string> {
 }
 export interface LocationService extends Service<Location, string, LocationFilter> {
+  uploadCoverImage(id: string, data: UploadData[], sizes?: number[]): Promise<string>;
+  uploadImage(id: string, data: UploadData[], sizes?: number[]): Promise<string>;
+  uploadGalleryFile(uploadGallery: UploadGallery<string>): Promise<UploadInfo[]>;
+  updateGallery(id: string, data: UploadInfo[]): Promise<boolean>;
+  deleteGalleryFile(id: string, url: string): Promise<boolean>;
+  getGalllery(id: string): Promise<UploadInfo[]>;
+  addExternalResource(id: string, data: UploadInfo): Promise<boolean>;
+  deleteExternalResource(id: string, url: string): Promise<boolean>;
+}
+
+export interface LocationUploadService {
+
 }
 
 export const locationModel: Attributes = {
