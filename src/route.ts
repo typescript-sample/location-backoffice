@@ -1,6 +1,6 @@
 import { Application } from 'express';
-import { ApplicationContext } from './context';
 import multer from 'multer';
+import { ApplicationContext } from './context';
 
 export function route(app: Application, ctx: ApplicationContext): void {
   const parser = multer();
@@ -14,7 +14,7 @@ export function route(app: Application, ctx: ApplicationContext): void {
   app.post('/articles', ctx.article.create);
   app.put('/articles/:id', ctx.article.update);
   app.patch('/articles/:id', ctx.article.patch);
-  app.delete('/articles/:id', ctx.article.delete); 
+  app.delete('/articles/:id', ctx.article.delete);
 
   app.post('/bookables/search', ctx.bookable.search);
   app.get('/bookables/search', ctx.bookable.search);

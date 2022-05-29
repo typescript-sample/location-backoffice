@@ -29,10 +29,6 @@ export interface LocationService extends Service<Location, string, LocationFilte
   deleteExternalResource(id: string, url: string): Promise<boolean>;
 }
 
-export interface LocationUploadService {
-
-}
-
 export const locationModel: Attributes = {
   id: {
     key: true

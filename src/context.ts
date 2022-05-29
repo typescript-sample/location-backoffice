@@ -1,3 +1,4 @@
+import { Storage } from '@google-cloud/storage';
 import { HealthController, LogController, Logger, Middleware, MiddlewareController, ModelConfig, resources, useBuild } from 'express-ext';
 import { deleteFile, GoogleStorageRepository, map, StorageConfig, useBuildUrl } from 'google-storage';
 import { LocationUploadController } from 'location/location-controller';
@@ -5,7 +6,6 @@ import { Db } from 'mongodb';
 import { MongoChecker } from 'mongodb-extension';
 import { StorageConf } from 'one-storage';
 import shortid from 'shortid';
-import { Storage } from '@google-cloud/storage'; 
 import { UploadController } from 'upload-express';
 import { createValidator } from 'xvalidators';
 import { ArticleController, useArticleController } from './article';
@@ -25,7 +25,7 @@ export interface ApplicationContext {
   event: EventController;
   bookable: BookableController;
   tour: TourController;
-  locationUpload: LocationUploadController
+  locationUpload: LocationUploadController;
 }
 
 export interface ConfigStorage {
@@ -42,10 +42,10 @@ export function useContext(db: Db, logger: Logger, midLogger: Middleware, conf: 
 
   const build = useBuild(conf, generate);
   const article = useArticleController(logger.error, db);
-  let sizesCover: number[] = [576, 768]
-  let sizesImage: number[] = [40, 400]
+  const sizesCover: number[] = [576, 768];
+  const sizesImage: number[] = [40, 400];
   const storageConfig: StorageConfig = { bucket: configStorage.bucket, public: true };
-  const storage = new Storage(); 
+  const storage = new Storage();
   const bucket = storage.bucket(configStorage.bucket);
   const storageRepository = new GoogleStorageRepository(bucket, storageConfig, map);
   const location = useLocationController(logger.error, db, storageRepository, deleteFile, generate, useBuildUrl(configStorage.bucket), sizesCover, sizesImage, build);

@@ -171,7 +171,7 @@ export class StorageService<T, ID> {
 
   async deleteFileUpload(oldUrl: string, galary: UploadInfo[] | undefined, sizes?: number[]) {
     // delete original file
-    if (!oldUrl || oldUrl.length > 0) return
+    if (!oldUrl || oldUrl.length > 0) { return; }
     if (shouldDelete(oldUrl, galary)) {
       await this.deleteFile(this.storage.delete, oldUrl).catch(err => { });
     }

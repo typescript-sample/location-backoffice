@@ -1,15 +1,16 @@
 import { Build } from 'express-ext';
+import { StorageRepository } from 'google-storage';
 import { Db } from 'mongodb';
 import { buildQuery, PointMapper, SearchBuilder } from 'mongodb-extension';
-import { Log, Manager, Search, BuildUrl, Delete, Generate } from 'onecore';
-import { GenericSearchStorageService, StorageConf, ModelConf, UploadInfo } from '../storage'
+import { BuildUrl, Delete, Generate, Log, Manager, Search } from 'onecore';
+import { GenericSearchStorageService, ModelConf, StorageConf, UploadInfo } from '../storage';
 import { Location, LocationFilter, locationModel, LocationRepository, LocationService } from './location';
 import { LocationController, LocationUploadController } from './location-controller';
+import { MongoLocationRepository } from './mongo-location-repository';
+
 export * from './location';
 export { LocationController };
 
-import { MongoLocationRepository } from './mongo-location-repository';
-import { StorageRepository } from 'google-storage';
 
 export class LocationManager extends GenericSearchStorageService<Location, string, LocationFilter> implements LocationService {
   constructor(search: Search<Location, LocationFilter>, repository: LocationRepository,
