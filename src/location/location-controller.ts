@@ -1,5 +1,5 @@
 import { Build, Controller, Log } from 'express-ext';
-import { UploadController } from '../controller';
+import { UploadController } from 'upload-express';
 import { Location, LocationFilter, LocationService } from './location';
 
 export class LocationController extends Controller<Location, string, LocationFilter> {

@@ -6,7 +6,6 @@ import { Db } from 'mongodb';
 import { MongoChecker } from 'mongodb-extension';
 import { StorageConf } from 'one-storage';
 import shortid from 'shortid';
-import { UploadController } from 'upload-express';
 import { createValidator } from 'xvalidators';
 import { ArticleController, useArticleController } from './article';
 import { BookableController, useBookableController } from './bookable';
@@ -32,7 +31,6 @@ export interface ConfigStorage {
   bucket: string;
   storage: StorageConf;
 }
-
 
 export function useContext(db: Db, logger: Logger, midLogger: Middleware, conf: ModelConfig, configStorage: ConfigStorage): ApplicationContext {
   const log = new LogController(logger);
