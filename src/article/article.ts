@@ -33,6 +33,9 @@ export const articleModel: Attributes = {
     match: 'equal',
     required: true
   },
+  title: {
+    q: true
+  },
   description: {
     q: true
   },
